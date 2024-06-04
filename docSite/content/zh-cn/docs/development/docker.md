@@ -181,6 +181,7 @@ curl -o docker-compose.yml https://raw.githubusercontent.com/labring/FastGPT/mai
 # 启动容器
 docker-compose up -d
 # 等待10s，OneAPI第一次总是要重启几次才能连上Mysql
+# 通过docker ps查看容器启动情况，在WSL中如果Mysql容器无法启动，请修改mysql版本号为8.0.7
 sleep 10
 # 重启一次oneapi(由于OneAPI的默认Key有点问题，不重启的话会提示找不到渠道，临时手动重启一次解决，等待作者修复)
 docker restart oneapi
@@ -204,7 +205,7 @@ docker restart oneapi
 
 ### Mongo 副本集自动初始化失败
 
-最新的 docker-compose 示例优化 Mongo 副本集初始化，实现了全自动。目前在 unbuntu20,22 centos7, wsl2, mac, window 均通过测试。仍无法正常启动，大部分是因为 cpu 不支持 AUX 指令集，可以切换 Mongo4.x 版本。
+最新的 docker-compose 示例优化 Mongo 副本集初始化，实现了全自动。目前在 unbuntu20,22 centos7, wsl2, mac, window 均通过测试。仍无法正常启动，大部分是因为 cpu 不支持 AVX 指令集，可以切换 Mongo4.x 版本。
 
 如果是由于，无法自动初始化副本集合，可以手动初始化副本集：
 
